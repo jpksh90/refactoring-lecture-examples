@@ -1,5 +1,7 @@
 package dk.sdu.refactoring.repeatedswitches.after;
 
+import java.util.Locale;
+
 /**
  * REFACTORING: Replace Conditional with Polymorphism (slides 40-41).
  *  1. Create a subclass for each case of the switch (Replace Type Code with Subclasses).
@@ -12,7 +14,7 @@ public abstract class Bird {
 
     // REFACTORING: Replace Constructor with Factory Function - the only place that still "switches"
     public static Bird create(String type, int coconuts, double voltage, boolean isNailed) {
-        return switch (type) {
+        return switch (type.toUpperCase(Locale.ROOT)) {
             case "EUROPEAN" -> new European();
             case "AFRICAN" -> new African(coconuts);
             case "NORWEGIAN_BLUE" -> new NorwegianBlue(voltage, isNailed);
